@@ -2,9 +2,7 @@ class UploadsController < ApplicationController
     attr_accessor :collection, :divisor
 
     def create
-        file = params[:file]
-        json_data = JSON.parse(file.read)
-        puts json_data
+        json_data = JSON.parse(request.body.read)
         @collection = json_data["number_collection"]
         @divisor = json_data["div_by"]
         updated_collection = processCollection(@collection, @divisor)
